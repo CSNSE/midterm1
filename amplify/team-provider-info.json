@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "midterm1d827b64f": {}
+      },
+      "api": {
+        "midterm1": {}
+      },
+      "storage": {
+        "s3ed371e5d": {}
       }
     }
   }

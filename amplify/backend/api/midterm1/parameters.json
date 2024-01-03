@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "midterm1",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-01-03T03:39:41.388Z"
+}
