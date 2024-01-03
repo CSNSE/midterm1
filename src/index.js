@@ -7,6 +7,23 @@ import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { BrowserRouter } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
+import { ThemeProvider, createTheme } from "@aws-amplify/ui-react";
+import { studioTheme } from './ui-components';
+
+const updatedTheme = createTheme({
+    name: "my-theme-updates", 
+    tokens: {
+        components: {
+            button: {
+                primary: {
+                    backgroundColor: {
+                        value: "#b71c1c"
+                    },
+                },
+            },
+        },
+    },
+}, studioTheme)
 Amplify.configure(config);
 
 
@@ -14,10 +31,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    <ThemeProvider theme={updatedTheme}>
+        <App />
+    </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
+
+
+
 
 
 // If you want to start measuring performance in your app, pass a function
