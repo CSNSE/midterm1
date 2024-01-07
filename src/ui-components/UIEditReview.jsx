@@ -16,7 +16,8 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField, processFile } from "./utils"; //MAH processFile
+import { fetchByPath, getOverrideProps, validateField, processFile, useNavigateAction } from "./utils"; //MAH processFile
+import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { getDiary } from "../graphql/queries";
 import { updateDiary } from "../graphql/mutations";
@@ -94,6 +95,7 @@ export default function UIEditReview(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
     <Grid
       as="form"
@@ -153,6 +155,7 @@ export default function UIEditReview(props) {
             onError(modelFields, messages);
           }
         }
+        buttonOnMouseOut(); //added to move screen to collection once updated
       }}
       {...getOverrideProps(overrides, "DiaryUpdateForm")}
       {...rest}
@@ -360,7 +363,9 @@ export default function UIEditReview(props) {
             {...getOverrideProps(overrides, "description")}
           ></TextAreaField>
         </Flex>
-        <Button
+      
+          
+          <Button
             children="Submit"
             type="submit"
             variation="primary"
