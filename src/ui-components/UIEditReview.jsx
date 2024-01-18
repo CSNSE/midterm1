@@ -10,7 +10,7 @@ import {
   Grid,
   Button,
   Flex,
-  Icon,
+  Icon, 
   Text,
   TextAreaField,
   TextField,
@@ -26,7 +26,7 @@ import { StorageManager } from "@aws-amplify/ui-react-storage"; //MAH add!
 const client = generateClient();
 export default function UIEditReview(props) {
   const {
-    idProp, //remove id:
+    idProp, 
     diary: diaryModelProp,
     onSuccess,
     onError,
@@ -46,6 +46,10 @@ export default function UIEditReview(props) {
   const [description, setDescription] = React.useState(
     initialValues.description
   );
+  const vectorOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -95,7 +99,26 @@ export default function UIEditReview(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" }); //added
+
+  const handleMouseDown = async () => {
+    try {
+      await client.graphql({
+        query: updateDiary.replaceAll("__typename", ""),
+        variables: {
+          input: {
+            id: diaryRecord.id,
+            name: name ?? null,
+            description: description ?? null,
+            image: image ?? null,
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Error updating diary:', error);
+      // Handle error as needed
+    }
+  };
   return (
     <Grid
       as="form"
@@ -155,7 +178,7 @@ export default function UIEditReview(props) {
             onError(modelFields, messages);
           }
         }
-        buttonOnMouseOut(); //added to move screen to collection once updated
+        buttonOnMouseUp(); //added to move screen to collection once updated
       }}
       {...getOverrideProps(overrides, "DiaryUpdateForm")}
       {...rest}
@@ -363,18 +386,19 @@ export default function UIEditReview(props) {
             {...getOverrideProps(overrides, "description")}
           ></TextAreaField>
         </Flex>
-      
-          
-          <Button
-            children="Submit"
-            type="submit"
-            variation="primary"
-            isDisabled={
-              !(idProp || diaryModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
-            {...getOverrideProps(overrides, "SubmitButton")}
-          ></Button>
+        <Button
+    children="Submit"
+    type="submit"
+    variation="primary"
+    isDisabled={
+      !(idProp || diaryModelProp) ||
+      Object.values(errors).some((e) => e?.hasError)
+    }
+    onMouseDown={() => handleMouseDown()}
+    onMouseUp={buttonOnMouseUp}
+    {...getOverrideProps(overrides, "SubmitButton")}
+  />
+
       </Flex>
     </Flex>
     </Grid>
