@@ -17,7 +17,6 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField, processFile, useNavigateAction } from "./utils"; //MAH processFile
-import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { getDiary } from "../graphql/queries";
 import { updateDiary } from "../graphql/mutations";
@@ -36,7 +35,6 @@ export default function UIEditReview(props) {
     overrides,
     ...rest
   } = props;
-  console.log("thing update got it: " + {idProp}); //added
   const initialValues = {
     name: "",
     description: "",
@@ -46,10 +44,6 @@ export default function UIEditReview(props) {
   const [description, setDescription] = React.useState(
     initialValues.description
   );
-  const vectorOnClick = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
   const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -102,7 +96,6 @@ export default function UIEditReview(props) {
   const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" }); //added
 
   const handleMouseDown = async () => {
-    try {
       await client.graphql({
         query: updateDiary.replaceAll("__typename", ""),
         variables: {
@@ -113,11 +106,7 @@ export default function UIEditReview(props) {
             image: image ?? null,
           },
         },
-      });
-    } catch (error) {
-      console.error('Error updating diary:', error);
-      // Handle error as needed
-    }
+      }); 
   };
   return (
     <Grid
@@ -404,3 +393,4 @@ export default function UIEditReview(props) {
     </Grid>
   );
 }
+//hello
