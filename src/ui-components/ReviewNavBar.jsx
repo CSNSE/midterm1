@@ -10,6 +10,7 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function ReviewNavBar(props) {
   const { overrides, ...rest } = props;
+  const foodDiaryOnClick = useNavigateAction({ type: "url", url: "/" });
   const homePageOnClick = useNavigateAction({ type: "url", url: "/all" });
   const buttonOnClick = useNavigateAction({ type: "url", url: "/new" });
   return (
@@ -59,6 +60,9 @@ export default function ReviewNavBar(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Food Diary"
+          onClick={() => {
+            foodDiaryOnClick();
+          }}
           {...getOverrideProps(overrides, "Food Diary")}
         ></Text>
       </Flex>
