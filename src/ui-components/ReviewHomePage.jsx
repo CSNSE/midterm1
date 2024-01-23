@@ -12,15 +12,15 @@ export default function ReviewHomePage(props) {
   const { overrides, ...rest } = props;
   const buttonFourOneThreeSevenTwoOneFiveOnClick = useNavigateAction({
     type: "url",
-    url: '"/mine"',
+    url: "/mine",
   });
   const buttonFourOneThreeSevenTwoOneOneOnClick = useNavigateAction({
     type: "url",
-    url: '"/"',
+    url: "/all",
   });
   const buttonFourOneThreeSevenTwoOneNineOnClick = useNavigateAction({
     type: "url",
-    url: '"/profile"',
+    url: "/profile",
   });
   return (
     <View
