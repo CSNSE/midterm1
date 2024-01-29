@@ -37,7 +37,7 @@ export default function UINewReview(props) {
     textFieldFourZeroSevenFiveFourFourThreeValue,
     setTextFieldFourZeroSevenFiveFourFourThreeValue,
   ] = useState("");
-  const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
+  const vectorOnClick = useNavigateAction({ type: "url", url: "/all" });
   const buttonOnClick = async () => {
     await client.graphql({
       query: createDiary.replaceAll("__typename", ""),

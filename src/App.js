@@ -18,7 +18,7 @@ class App extends Component {
         <Route exact path='/edit/:cid' element= {<div><EditReview/></div>} />
         <Route exact path='/mine' element={<div><ReviewNavBar/><MyCardCollection/></div>}/>
         <Route exact path='/create' element={<DiaryCreateForm/>} />
-        
+        <Route exact path='/info' element={<InfoReview/>} />
       </Routes>
     </header></div>
     );
