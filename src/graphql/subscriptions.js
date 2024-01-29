@@ -9,6 +9,8 @@ export const onCreateDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
@@ -23,6 +25,8 @@ export const onUpdateDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
@@ -37,6 +41,8 @@ export const onDeleteDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename

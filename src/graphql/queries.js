@@ -9,6 +9,8 @@ export const getDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
@@ -28,6 +30,8 @@ export const listDiaries = /* GraphQL */ `
         image
         description
         author
+        address
+        website
         createdAt
         updatedAt
         __typename
