@@ -29,6 +29,8 @@ export declare type UINewReviewOverridesProps = {
     TextField4075415?: PrimitiveOverrideProps<TextFieldProps>;
     TextField4075436?: PrimitiveOverrideProps<TextFieldProps>;
     TextField4075443?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4148143?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4148150?: PrimitiveOverrideProps<TextFieldProps>;
     Divider4075339?: PrimitiveOverrideProps<DividerProps>;
     "Frame 322"?: PrimitiveOverrideProps<FlexProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;

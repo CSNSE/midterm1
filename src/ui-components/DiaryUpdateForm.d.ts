@@ -26,11 +26,15 @@ export declare type DiaryUpdateFormInputValues = {
     name?: string;
     image?: string;
     description?: string;
+    address?: string;
+    website?: string;
 };
 export declare type DiaryUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
+    address?: ValidationFunction<string>;
+    website?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type DiaryUpdateFormOverridesProps = {
@@ -38,6 +42,8 @@ export declare type DiaryUpdateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<StorageManagerProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
+    address?: PrimitiveOverrideProps<TextFieldProps>;
+    website?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type DiaryUpdateFormProps = React.PropsWithChildren<{
     overrides?: DiaryUpdateFormOverridesProps | undefined | null;

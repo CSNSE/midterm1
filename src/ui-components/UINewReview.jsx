@@ -37,8 +37,10 @@ export default function UINewReview(props) {
     textFieldFourZeroSevenFiveFourFourThreeValue,
     setTextFieldFourZeroSevenFiveFourFourThreeValue,
   ] = useState("");
+  const iconOnMouseDown = useNavigateAction({ type: "url", url: "" });
   const vectorOnClick = useNavigateAction({ type: "url", url: "/all" });
-  const buttonOnClick = async () => {
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/all" });
+  const buttonOnMouseDown = async () => {
     await client.graphql({
       query: createDiary.replaceAll("__typename", ""),
       variables: {
@@ -51,7 +53,6 @@ export default function UINewReview(props) {
       },
     });
   };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
       gap="16px"
@@ -103,6 +104,9 @@ export default function UINewReview(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
+            onMouseDown={() => {
+              iconOnMouseDown();
+            }}
             {...getOverrideProps(overrides, "Icon")}
           >
             <Icon
@@ -191,7 +195,7 @@ export default function UINewReview(props) {
             }}
             {...getOverrideProps(overrides, "TextField4075415")}
           ></TextField>
-            <Field
+          <Field
 
             label={"Image"}
             isRequired={false}
@@ -210,7 +214,7 @@ export default function UINewReview(props) {
               showThumbnails={true}
               maxFileCount={1}
               {...getOverrideProps(overrides, "image")}
-            ></StorageManager>
+          ></StorageManager>
             </Field>
           <TextField
             width="272px"
@@ -229,6 +233,30 @@ export default function UINewReview(props) {
               );
             }}
             {...getOverrideProps(overrides, "TextField4075443")}
+          ></TextField>
+          <TextField
+            width="272px"
+            height="unset"
+            label="Address of Restaurant"
+            placeholder="123 Pineapple Dr"
+            shrink="0"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            {...getOverrideProps(overrides, "TextField4148143")}
+          ></TextField>
+          <TextField
+            width="272px"
+            height="unset"
+            label="Restaurant Website"
+            placeholder="www.example.com"
+            shrink="0"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            {...getOverrideProps(overrides, "TextField4148150")}
           ></TextField>
         </Flex>
         <Divider
@@ -262,11 +290,11 @@ export default function UINewReview(props) {
             isDisabled={false}
             variation="default"
             children="Create"
-            onClick={() => {
-              buttonOnClick();
-            }}
             onMouseOut={() => {
               buttonOnMouseOut();
+            }}
+            onMouseDown={() => {
+              buttonOnMouseDown();
             }}
             {...getOverrideProps(overrides, "Button")}
           ></Button>

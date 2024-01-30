@@ -35,12 +35,16 @@ export default function UIEditReview(props) {
     name: "",
     image: undefined,
     description: "",
+    address: "",
+    website: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
+  const [address, setAddress] = React.useState(initialValues.address);
+  const [website, setWebsite] = React.useState(initialValues.website);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = diaryRecord
@@ -49,6 +53,8 @@ export default function UIEditReview(props) {
     setName(cleanValues.name);
     setImage(cleanValues.image);
     setDescription(cleanValues.description);
+    setAddress(cleanValues.address);
+    setWebsite(cleanValues.website);
     setErrors({});
   };
   const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
@@ -71,6 +77,8 @@ export default function UIEditReview(props) {
     name: [],
     image: [],
     description: [],
+    address: [],
+    website: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -101,6 +109,8 @@ export default function UIEditReview(props) {
           name: name ?? null,
           image: image ?? null,
           description: description ?? null,
+          address: address ?? null,
+          website: website ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -164,6 +174,8 @@ export default function UIEditReview(props) {
               name: value,
               image,
               description,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -196,6 +208,8 @@ export default function UIEditReview(props) {
                     name,
                     image: value,
                     description,
+                    address,
+                    website,
                   };
                   const result = onChange(modelFields);
                   value = result?.image ?? value;
@@ -211,6 +225,8 @@ export default function UIEditReview(props) {
                     name,
                     image: value,
                     description,
+                    address,
+                    website,
                   };
                   const result = onChange(modelFields);
                   value = result?.image ?? value;
@@ -240,6 +256,8 @@ export default function UIEditReview(props) {
               name,
               image,
               description: value,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -254,20 +272,66 @@ export default function UIEditReview(props) {
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
       ></TextField>
+      <TextField
+        label="Address"
+        isRequired={false}
+        isReadOnly={false}
+        value={address}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              description,
+              address: value,
+              website,
+            };
+            const result = onChange(modelFields);
+            value = result?.address ?? value;
+          }
+          if (errors.address?.hasError) {
+            runValidationTasks("address", value);
+          }
+          setAddress(value);
+        }}
+        onBlur={() => runValidationTasks("address", address)}
+        errorMessage={errors.address?.errorMessage}
+        hasError={errors.address?.hasError}
+        {...getOverrideProps(overrides, "address")}
+      ></TextField>
+      <TextField
+        label="Website"
+        isRequired={false}
+        isReadOnly={false}
+        value={website}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              description,
+              address,
+              website: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.website ?? value;
+          }
+          if (errors.website?.hasError) {
+            runValidationTasks("website", value);
+          }
+          setWebsite(value);
+        }}
+        onBlur={() => runValidationTasks("website", website)}
+        errorMessage={errors.website?.errorMessage}
+        hasError={errors.website?.hasError}
+        {...getOverrideProps(overrides, "website")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
-        <Button
-          children="Reset"
-          type="reset"
-          onClick={(event) => {
-            event.preventDefault();
-            resetStateValues();
-          }}
-          isDisabled={!(idProp || diaryModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
-        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
