@@ -4,6 +4,8 @@ type Diary @model @auth(rules: [{allow: public}]) {
   image: String
   description: String
   author: String
+  address: String
+  website: String
 }
 
 type Note @model @auth(rules: [{allow: public}]) {

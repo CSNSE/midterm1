@@ -27,6 +27,8 @@ export default function DiaryCreateForm(props) {
     image: "",
     description: "",
     author: "",
+    address: "",
+    website: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
@@ -34,12 +36,16 @@ export default function DiaryCreateForm(props) {
     initialValues.description
   );
   const [author, setAuthor] = React.useState(initialValues.author);
+  const [address, setAddress] = React.useState(initialValues.address);
+  const [website, setWebsite] = React.useState(initialValues.website);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setImage(initialValues.image);
     setDescription(initialValues.description);
     setAuthor(initialValues.author);
+    setAddress(initialValues.address);
+    setWebsite(initialValues.website);
     setErrors({});
   };
   const validations = {
@@ -47,6 +53,8 @@ export default function DiaryCreateForm(props) {
     image: [],
     description: [],
     author: [],
+    address: [],
+    website: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -78,6 +86,8 @@ export default function DiaryCreateForm(props) {
           image,
           description,
           author,
+          address,
+          website,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -144,6 +154,8 @@ export default function DiaryCreateForm(props) {
               image,
               description,
               author,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -171,6 +183,8 @@ export default function DiaryCreateForm(props) {
               image: value,
               description,
               author,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -198,6 +212,8 @@ export default function DiaryCreateForm(props) {
               image,
               description: value,
               author,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -225,6 +241,8 @@ export default function DiaryCreateForm(props) {
               image,
               description,
               author: value,
+              address,
+              website,
             };
             const result = onChange(modelFields);
             value = result?.author ?? value;
@@ -238,6 +256,64 @@ export default function DiaryCreateForm(props) {
         errorMessage={errors.author?.errorMessage}
         hasError={errors.author?.hasError}
         {...getOverrideProps(overrides, "author")}
+      ></TextField>
+      <TextField
+        label="Address"
+        isRequired={false}
+        isReadOnly={false}
+        value={address}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              description,
+              author,
+              address: value,
+              website,
+            };
+            const result = onChange(modelFields);
+            value = result?.address ?? value;
+          }
+          if (errors.address?.hasError) {
+            runValidationTasks("address", value);
+          }
+          setAddress(value);
+        }}
+        onBlur={() => runValidationTasks("address", address)}
+        errorMessage={errors.address?.errorMessage}
+        hasError={errors.address?.hasError}
+        {...getOverrideProps(overrides, "address")}
+      ></TextField>
+      <TextField
+        label="Website"
+        isRequired={false}
+        isReadOnly={false}
+        value={website}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              description,
+              author,
+              address,
+              website: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.website ?? value;
+          }
+          if (errors.website?.hasError) {
+            runValidationTasks("website", value);
+          }
+          setWebsite(value);
+        }}
+        onBlur={() => runValidationTasks("website", website)}
+        errorMessage={errors.website?.errorMessage}
+        hasError={errors.website?.hasError}
+        {...getOverrideProps(overrides, "website")}
       ></TextField>
       <Flex
         justifyContent="space-between"

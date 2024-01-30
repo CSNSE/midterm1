@@ -4,8 +4,10 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as Component1 } from "./Component1";
 export { default as DiaryCreateForm } from "./DiaryCreateForm";
 export { default as DiaryUpdateForm } from "./DiaryUpdateForm";
+export { default as MyCardCollection } from "./MyCardCollection";
 export { default as MyIcon } from "./MyIcon";
 export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteUpdateForm } from "./NoteUpdateForm";

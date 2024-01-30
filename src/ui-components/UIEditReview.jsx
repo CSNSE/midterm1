@@ -6,14 +6,14 @@
 
 /* eslint-disable */
 import * as React from "react";
-//hello
 import {
-  Grid,
+Grid,
   Button,
+  Divider,
   Flex,
-  Icon, 
+  Icon,
   Text,
-  TextAreaField,
+TextAreaField,
   TextField,
   View,
 } from "@aws-amplify/ui-react";
@@ -25,159 +25,42 @@ import { Field } from "@aws-amplify/ui-react/internal";  //MAH add!
 import { StorageManager } from "@aws-amplify/ui-react-storage"; //MAH add!
 const client = generateClient();
 export default function UIEditReview(props) {
-  const {
-    idProp, 
-    diary: diaryModelProp,
-    onSuccess,
-    onError,
-    onSubmit,
-    onValidate,
-    onChange,
-    overrides,
-    ...rest
-  } = props;
-  const initialValues = {
-    name: "",
-    description: "",
-    image: "",
-  };
-  const [name, setName] = React.useState(initialValues.name);
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
-  const [image, setImage] = React.useState(initialValues.image);
-  const [errors, setErrors] = React.useState({});
-  const resetStateValues = () => {
-    const cleanValues = diaryRecord
-      ? { ...initialValues, ...diaryRecord }
-      : initialValues;
-    setName(cleanValues.name);
-    setDescription(cleanValues.description);
-    setImage(cleanValues.image);
-    setErrors({});
-  };
-  const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getDiary.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getDiary
-        : diaryModelProp;
-      setDiaryRecord(record);
-    };
-    queryData();
-  }, [idProp, diaryModelProp]);
-  React.useEffect(resetStateValues, [diaryRecord]);
-  const validations = {
-    name: [{ type: "Required" }],
-    description: [],
-    image: [],
-  };
-  const runValidationTasks = async (
-    fieldName,
-    currentValue,
-    getDisplayValue
-  ) => {
-    const value =
-      currentValue && getDisplayValue
-        ? getDisplayValue(currentValue)
-        : currentValue;
-    let validationResponse = validateField(value, validations[fieldName]);
-    const customValidator = fetchByPath(onValidate, fieldName);
-    if (customValidator) {
-      validationResponse = await customValidator(value, validationResponse);
-    }
-    setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
-    return validationResponse;
-  };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" }); //added
-
-  const handleMouseDown = async () => {
-      await client.graphql({
-        query: updateDiary.replaceAll("__typename", ""),
-        variables: {
-          input: {
-            id: diaryRecord.id,
-            name: name ?? null,
-            description: description ?? null,
-            image: image ?? null,
-          },
+  const { d, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
+  const [
+    textFieldFourZeroSevenFiveFourFiveZeroValue,
+    setTextFieldFourZeroSevenFiveFourFiveZeroValue,
+  ] = useState("");
+  const [
+    textFieldFourZeroSevenFiveFourSevenOneValue,
+    setTextFieldFourZeroSevenFiveFourSevenOneValue,
+  ] = useState("");
+  const [
+    textFieldFourZeroSevenFiveFourSevenEightValue,
+    setTextFieldFourZeroSevenFiveFourSevenEightValue,
+  ] = useState("");
+  const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnClick = async () => {
+    await client.graphql({
+      query: updateDiary.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldFourZeroSevenFiveFourFiveZeroValue,
+          image: textFieldFourZeroSevenFiveFourSevenOneValue,
+          description: textFieldFourZeroSevenFiveFourSevenEightValue,
+          author: authAttributes["email"],
+          id: d?.id,
         },
-      }); 
+      },
+    });
   };
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
-    <Grid
-      as="form"
-      rowGap="15px"
-      columnGap="15px"
-      padding="20px"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        let modelFields = {
-          name,
-          description: description ?? null,
-          image: image ?? null,
-        };
-        const validationResponses = await Promise.all(
-          Object.keys(validations).reduce((promises, fieldName) => {
-            if (Array.isArray(modelFields[fieldName])) {
-              promises.push(
-                ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
-                )
-              );
-              return promises;
-            }
-            promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
-            );
-            return promises;
-          }, [])
-        );
-        if (validationResponses.some((r) => r.hasError)) {
-          return;
-        }
-        if (onSubmit) {
-          modelFields = onSubmit(modelFields);
-        }
-        try {
-          Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value === "") {
-              modelFields[key] = null;
-            }
-          });
-          await client.graphql({
-            query: updateDiary.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                id: diaryRecord.id,
-                ...modelFields,
-              },
-            },
-          });
-          if (onSuccess) {
-            onSuccess(modelFields);
-          }
-        } catch (err) {
-          if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
-          }
-        }
-        buttonOnMouseUp(); //added to move screen to collection once updated
-      }}
-      {...getOverrideProps(overrides, "DiaryUpdateForm")}
-      {...rest}
-    >
     <Flex
       gap="16px"
       direction="column"
       width="320px"
-      height="720px"
+      height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
@@ -190,7 +73,7 @@ export default function UIEditReview(props) {
         gap="24px"
         direction="column"
         width="unset"
-        height="720px"
+        height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
@@ -223,7 +106,7 @@ export default function UIEditReview(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "xIcon")}
+            {...getOverrideProps(overrides, "Icon")}
           >
             <Icon
               width="14px"
@@ -232,7 +115,7 @@ export default function UIEditReview(props) {
               paths={[
                 {
                   d: "M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",
-                  fill: "rgba(92,102,112,1)",
+                  fill: "rgba(13,26,38,1)",
                   fillRule: "nonzero",
                 },
               ]}
@@ -245,6 +128,9 @@ export default function UIEditReview(props) {
               bottom="20.83%"
               left="20.83%"
               right="20.83%"
+              onClick={() => {
+                vectorOnClick();
+              }}
               {...getOverrideProps(overrides, "Vector")}
             ></Icon>
           </View>
@@ -270,52 +156,45 @@ export default function UIEditReview(props) {
             {...getOverrideProps(overrides, "Edit Review")}
           ></Text>
         </Flex>
+        <Divider
+          width="unset"
+          height="1px"
+          shrink="0"
+          alignSelf="stretch"
+          size="small"
+          orientation="horizontal"
+          {...getOverrideProps(overrides, "Divider4075319")}
+        ></Divider>
         <Flex
           gap="16px"
           direction="column"
-          width="272px"
-          height="582px"
+          width="unset"
+          height="unset"
           justifyContent="flex-start"
           alignItems="flex-start"
           shrink="0"
+          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Forms")}
         >
           <TextField
-            width="unset"
+            width="272px"
             height="unset"
             label="Name of Restaurant"
-            placeholder="name"
+            placeholder="Sage Dining"
             shrink="0"
-            alignSelf="stretch"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            isRequired={true}
-            isReadOnly={false}
-            value={name}
-            onChange={(e) => {
-              let { value } = e.target;
-              if (onChange) {
-                const modelFields = {
-                  name: value,
-                  description,
-                  image,
-                };
-                const result = onChange(modelFields);
-                value = result?.name ?? value;
-              }
-              if (errors.name?.hasError) {
-                runValidationTasks("name", value);
-              }
-              setName(value);
+            value={textFieldFourZeroSevenFiveFourFiveZeroValue}
+            onChange={(event) => {
+              setTextFieldFourZeroSevenFiveFourFiveZeroValue(
+                event.target.value
+              );
             }}
-            onBlur={() => runValidationTasks("name", name)}
-            errorMessage={errors.name?.errorMessage}
-            hasError={errors.name?.hasError}
-            {...getOverrideProps(overrides, "name")}
+            {...getOverrideProps(overrides, "TextField4075450")}
           ></TextField>
           {/* <Field> REPLACES ORIGINAL Image TextField  //MAH */}
           <Field
@@ -337,60 +216,427 @@ export default function UIEditReview(props) {
               showThumbnails={true}
               maxFileCount={1}
               {...getOverrideProps(overrides, "image")}
-              ></StorageManager>
+          ></StorageManager>
               </Field>
           <TextAreaField
             width="272px"
-            height="406px"
-            label="Description"
-            placeholder="description"
-            justifyContent="flex-start"
-            alignItems="center"
+            height="unset"
+            label="Written Review"
+            placeholder="It was good..."
             shrink="0"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            isRequired={false}
-            isReadOnly={false}
-            value={description}
-            onChange={(e) => {
-              let { value } = e.target;
-              if (onChange) {
-                const modelFields = {
-                  name,
-                  description: value,
-                  image,
-                };
-                const result = onChange(modelFields);
-                value = result?.description ?? value;
-              }
-              if (errors.description?.hasError) {
-                runValidationTasks("description", value);
-              }
-              setDescription(value);
+            value={textFieldFourZeroSevenFiveFourSevenEightValue}
+            onChange={(event) => {
+              setTextFieldFourZeroSevenFiveFourSevenEightValue(
+                event.target.value
+              );
             }}
-            onBlur={() => runValidationTasks("description", description)}
-            errorMessage={errors.description?.errorMessage}
-            hasError={errors.description?.hasError}
-            {...getOverrideProps(overrides, "description")}
+            {...getOverrideProps(overrides, "TextField4075478")}
           ></TextAreaField>
+          <TextField
+            width="272px"
+            height="unset"
+            label="Address of Restaurant"
+            placeholder="123 Pineapple Dr"
+            shrink="0"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            {...getOverrideProps(overrides, "TextField4148136")}
+          ></TextField>
+          <TextField
+            width="272px"
+            height="unset"
+            label="Restaurant Website"
+            placeholder="www.example.com"
+            shrink="0"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            {...getOverrideProps(overrides, "TextField4148157")}
+          ></TextField>
         </Flex>
-        <Button
-    children="Submit"
-    type="submit"
-    variation="primary"
-    isDisabled={
-      !(idProp || diaryModelProp) ||
-      Object.values(errors).some((e) => e?.hasError)
-    }
-    onMouseDown={() => handleMouseDown()}
-    onMouseUp={buttonOnMouseUp}
-    {...getOverrideProps(overrides, "SubmitButton")}
-  />
-
+        <Divider
+          width="unset"
+          height="1px"
+          shrink="0"
+          alignSelf="stretch"
+          size="small"
+          orientation="horizontal"
+          {...getOverrideProps(overrides, "Divider4075324")}
+        ></Divider>
+        <Flex
+          gap="25px"
+          direction="row"
+          width="272px"
+          height="unset"
+          justifyContent="center"
+          alignItems="center"
+          overflow="hidden"
+          shrink="0"
+          position="relative"
+          padding="13px 39px 13px 39px"
+          {...getOverrideProps(overrides, "Frame 322")}
+        >
+          <Button
+            width="140px"
+            height="unset"
+            borderRadius="4px"
+            shrink="0"
+            backgroundColor="rgba(67,168,84,1)"
+            size="default"
+            isDisabled={false}
+            variation="default"
+            children="Save"
+            onClick={() => {
+              buttonOnClick();
+            }}
+            onMouseOut={() => {
+              buttonOnMouseOut();
+            }}
+            {...getOverrideProps(overrides, "Button")}
+          ></Button>
+        </Flex>
       </Flex>
     </Flex>
-    </Grid>
   );
 }
+
+
+// export default function UIEditReview(props) {
+//   const {
+//     idProp,
+//     diary: diaryModelProp,
+//     onSuccess,
+//     onError,
+//     onSubmit,
+//     onValidate,
+//     onChange,
+//     overrides,
+//     ...rest
+//   } = props;
+//   const initialValues = {
+//     name: "",
+//     image: undefined,
+//     description: "",
+//     address: "",
+//     website: "",
+//   };
+//   const [name, setName] = React.useState(initialValues.name);
+//   const [image, setImage] = React.useState(initialValues.image);
+//   const [description, setDescription] = React.useState(
+//     initialValues.description
+//   );
+//   const [address, setAddress] = React.useState(initialValues.address);
+//   const [website, setWebsite] = React.useState(initialValues.website);
+//   const [errors, setErrors] = React.useState({});
+//   const resetStateValues = () => {
+//     const cleanValues = diaryRecord
+//       ? { ...initialValues, ...diaryRecord }
+//       : initialValues;
+//     setName(cleanValues.name);
+//     setImage(cleanValues.image);
+//     setDescription(cleanValues.description);
+//     setAddress(cleanValues.address);
+//     setWebsite(cleanValues.website);
+//     setErrors({});
+//   };
+//   const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
+//   React.useEffect(() => {
+//     const queryData = async () => {
+//       const record = idProp
+//         ? (
+//             await client.graphql({
+//               query: getDiary.replaceAll("__typename", ""),
+//               variables: { id: idProp },
+//             })
+//           )?.data?.getDiary
+//         : diaryModelProp;
+//       setDiaryRecord(record);
+//     };
+//     queryData();
+//   }, [idProp, diaryModelProp]);
+//   React.useEffect(resetStateValues, [diaryRecord]);
+//   const validations = {
+//     name: [],
+//     image: [],
+//     description: [],
+//     address: [],
+//     website: [],
+//   };
+//   const runValidationTasks = async (
+//     fieldName,
+//     currentValue,
+//     getDisplayValue
+//   ) => {
+//     const value =
+//       currentValue && getDisplayValue
+//         ? getDisplayValue(currentValue)
+//         : currentValue;
+//     let validationResponse = validateField(value, validations[fieldName]);
+//     const customValidator = fetchByPath(onValidate, fieldName);
+//     if (customValidator) {
+//       validationResponse = await customValidator(value, validationResponse);
+//     }
+//     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
+//     return validationResponse;
+//   };
+//   return (
+//     <Grid
+//       as="form"
+//       rowGap="15px"
+//       columnGap="15px"
+//       padding="20px"
+//       onSubmit={async (event) => {
+//         event.preventDefault();
+//         let modelFields = {
+//           name: name ?? null,
+//           image: image ?? null,
+//           description: description ?? null,
+//           address: address ?? null,
+//           website: website ?? null,
+//         };
+//         const validationResponses = await Promise.all(
+//           Object.keys(validations).reduce((promises, fieldName) => {
+//             if (Array.isArray(modelFields[fieldName])) {
+//               promises.push(
+//                 ...modelFields[fieldName].map((item) =>
+//                   runValidationTasks(fieldName, item)
+//                 )
+//               );
+//               return promises;
+//             }
+//             promises.push(
+//               runValidationTasks(fieldName, modelFields[fieldName])
+//             );
+//             return promises;
+//           }, [])
+//         );
+//         if (validationResponses.some((r) => r.hasError)) {
+//           return;
+//         }
+//         if (onSubmit) {
+//           modelFields = onSubmit(modelFields);
+//         }
+//         try {
+//           Object.entries(modelFields).forEach(([key, value]) => {
+//             if (typeof value === "string" && value === "") {
+//               modelFields[key] = null;
+//             }
+//           });
+//           await client.graphql({
+//             query: updateDiary.replaceAll("__typename", ""),
+//             variables: {
+//               input: {
+//                 id: diaryRecord.id,
+//                 ...modelFields,
+//               },
+//             },
+//           });
+//           if (onSuccess) {
+//             onSuccess(modelFields);
+//           }
+//         } catch (err) {
+//           if (onError) {
+//             const messages = err.errors.map((e) => e.message).join("\n");
+//             onError(modelFields, messages);
+//           }
+//         }
+//       }}
+//       {...getOverrideProps(overrides, "DiaryUpdateForm")}
+//       {...rest}
+//     >
+//       <TextField
+//         label="Name"
+//         isRequired={false}
+//         isReadOnly={false}
+//         value={name}
+//         onChange={(e) => {
+//           let { value } = e.target;
+//           if (onChange) {
+//             const modelFields = {
+//               name: value,
+//               image,
+//               description,
+//               address,
+//               website,
+//             };
+//             const result = onChange(modelFields);
+//             value = result?.name ?? value;
+//           }
+//           if (errors.name?.hasError) {
+//             runValidationTasks("name", value);
+//           }
+//           setName(value);
+//         }}
+//         onBlur={() => runValidationTasks("name", name)}
+//         errorMessage={errors.name?.errorMessage}
+//         hasError={errors.name?.hasError}
+//         {...getOverrideProps(overrides, "name")}
+//       ></TextField>
+//       <Field
+//         errorMessage={errors.image?.errorMessage}
+//         hasError={errors.image?.hasError}
+//         label={"Image"}
+//         isRequired={false}
+//         isReadOnly={false}
+//       >
+//         {diaryRecord && (
+//           <StorageManager
+//             defaultFiles={[{ key: diaryRecord.image }]}
+//             onUploadSuccess={({ key }) => {
+//               setImage((prev) => {
+//                 let value = key;
+//                 if (onChange) {
+//                   const modelFields = {
+//                     name,
+//                     image: value,
+//                     description,
+//                     address,
+//                     website,
+//                   };
+//                   const result = onChange(modelFields);
+//                   value = result?.image ?? value;
+//                 }
+//                 return value;
+//               });
+//             }}
+//             onFileRemove={({ key }) => {
+//               setImage((prev) => {
+//                 let value = initialValues?.image;
+//                 if (onChange) {
+//                   const modelFields = {
+//                     name,
+//                     image: value,
+//                     description,
+//                     address,
+//                     website,
+//                   };
+//                   const result = onChange(modelFields);
+//                   value = result?.image ?? value;
+//                 }
+//                 return value;
+//               });
+//             }}
+//             processFile={processFile}
+//             accessLevel={"private"}
+//             acceptedFileTypes={[]}
+//             isResumable={false}
+//             showThumbnails={true}
+//             maxFileCount={1}
+//             {...getOverrideProps(overrides, "image")}
+//           ></StorageManager>
+//         )}
+//       </Field>
+//       <TextField
+//         label="Description"
+//         isRequired={false}
+//         isReadOnly={false}
+//         value={description}
+//         onChange={(e) => {
+//           let { value } = e.target;
+//           if (onChange) {
+//             const modelFields = {
+//               name,
+//               image,
+//               description: value,
+//               address,
+//               website,
+//             };
+//             const result = onChange(modelFields);
+//             value = result?.description ?? value;
+//           }
+//           if (errors.description?.hasError) {
+//             runValidationTasks("description", value);
+//           }
+//           setDescription(value);
+//         }}
+//         onBlur={() => runValidationTasks("description", description)}
+//         errorMessage={errors.description?.errorMessage}
+//         hasError={errors.description?.hasError}
+//         {...getOverrideProps(overrides, "description")}
+//       ></TextField>
+//       <TextField
+//         label="Address"
+//         isRequired={false}
+//         isReadOnly={false}
+//         value={address}
+//         onChange={(e) => {
+//           let { value } = e.target;
+//           if (onChange) {
+//             const modelFields = {
+//               name,
+//               image,
+//               description,
+//               address: value,
+//               website,
+//             };
+//             const result = onChange(modelFields);
+//             value = result?.address ?? value;
+//           }
+//           if (errors.address?.hasError) {
+//             runValidationTasks("address", value);
+//           }
+//           setAddress(value);
+//         }}
+//         onBlur={() => runValidationTasks("address", address)}
+//         errorMessage={errors.address?.errorMessage}
+//         hasError={errors.address?.hasError}
+//         {...getOverrideProps(overrides, "address")}
+//       ></TextField>
+//       <TextField
+//         label="Website"
+//         isRequired={false}
+//         isReadOnly={false}
+//         value={website}
+//         onChange={(e) => {
+//           let { value } = e.target;
+//           if (onChange) {
+//             const modelFields = {
+//               name,
+//               image,
+//               description,
+//               address,
+//               website: value,
+//             };
+//             const result = onChange(modelFields);
+//             value = result?.website ?? value;
+//           }
+//           if (errors.website?.hasError) {
+//             runValidationTasks("website", value);
+//           }
+//           setWebsite(value);
+//         }}
+//         onBlur={() => runValidationTasks("website", website)}
+//         errorMessage={errors.website?.errorMessage}
+//         hasError={errors.website?.hasError}
+//         {...getOverrideProps(overrides, "website")}
+//       ></TextField>
+//       <Flex
+//         justifyContent="space-between"
+//         {...getOverrideProps(overrides, "CTAFlex")}
+//       >
+//         <Flex
+//           gap="15px"
+//           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
+//         >
+//           <Button
+//             children="Submit"
+//             type="submit"
+//             variation="primary"
+//             isDisabled={
+//               !(idProp || diaryModelProp) ||
+//               Object.values(errors).some((e) => e?.hasError)
+//             }
+//             {...getOverrideProps(overrides, "SubmitButton")}
+//           ></Button>
+//         </Flex>
+//       </Flex>
+//     </Grid>
+//   );
+// }

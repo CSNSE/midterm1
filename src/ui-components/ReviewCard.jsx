@@ -14,6 +14,7 @@ import MyIcon from "./MyIcon";
 const client = generateClient();
 export default function ReviewCard(props) {
   const { d, overrides, ...rest } = props;
+  const imageOnClick = useNavigateAction({ type: "url", url: "/info" });
   const buttonFourOneOneSevenSixTwoOnClick = useNavigateAction({
     type: "url",
     url: `${"/edit/"}${d?.id}`,
@@ -59,6 +60,9 @@ export default function ReviewCard(props) {
         padding="0px 0px 0px 0px"
         objectFit="cover"
         src={d?.image}
+        onClick={() => {
+          imageOnClick();
+        }}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <View

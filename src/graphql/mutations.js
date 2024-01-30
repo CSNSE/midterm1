@@ -12,6 +12,8 @@ export const createDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
@@ -29,6 +31,8 @@ export const updateDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
@@ -46,6 +50,8 @@ export const deleteDiary = /* GraphQL */ `
       image
       description
       author
+      address
+      website
       createdAt
       updatedAt
       __typename
