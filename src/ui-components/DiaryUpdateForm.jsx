@@ -19,9 +19,9 @@ import { getDiary } from "../graphql/queries";
 import { updateDiary } from "../graphql/mutations";
 import { Field } from "@aws-amplify/ui-react/internal";
 const client = generateClient();
-export default function UIEditReview(props) {
+export default function DiaryUpdateForm(props) {
   const {
-    idProp,
+    id: idProp,
     diary: diaryModelProp,
     onSuccess,
     onError,
