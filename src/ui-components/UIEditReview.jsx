@@ -389,10 +389,10 @@ export default function UIEditReview(props) {
             let { value } = e.target;
             if (onChange) {
               const modelFields = {
-                name: value,
+                name,
                 description,
                 image,
-                address,
+                address: value,
                 website,
               };
               const result = onChange(modelFields);
@@ -426,11 +426,11 @@ export default function UIEditReview(props) {
               let { value } = e.target;
               if (onChange) {
                 const modelFields = {
-                  name: value,
+                  name,
                   description,
                   image,
                   address,
-                  website,
+                  website: value,
                 };
                 const result = onChange(modelFields);
                 value = result?.website ?? value;
@@ -455,6 +455,40 @@ export default function UIEditReview(props) {
             }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
+          {/* <Button
+  children="Submit"
+  type="submit"
+  variation="primary"
+  isDisabled={
+    !(idProp || prefModelProp) ||
+    Object.values(errors).some((e) => e?.hasError)
+  }
+  onClick={async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    try {
+      // Perform the form submission
+      await client.graphql({
+        query: updatePref.replaceAll("__typename", ""),
+        variables: {
+          input: {
+            id: prefRecord.id,
+            type: type ?? null,
+            name: name ?? null,
+            priority: priority ?? null,
+          },
+        },
+      });
+
+      // If no error occurred during submission, trigger navigation
+      vectorFourOneSixSixOneFiveOneSevenOnClick();
+    } catch (error) {
+      // Handle submission error
+      console.error('Error submitting form:', error);
+    }
+  }}
+  {...getOverrideProps(overrides, "SubmitButton")}
+></Button> */}
           </Flex>
       </Flex>
     </Flex>
