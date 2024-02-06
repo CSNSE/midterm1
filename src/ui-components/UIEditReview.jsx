@@ -297,6 +297,8 @@ export default function UIEditReview(props) {
                   name: value,
                   description,
                   image,
+                  address,
+                  website,
                 };
                 const result = onChange(modelFields);
                 value = result?.name ?? value;
@@ -332,19 +334,18 @@ export default function UIEditReview(props) {
               {...getOverrideProps(overrides, "image")}
               ></StorageManager>
               </Field>
-          <TextAreaField
-            width="272px"
-            height="406px"
+          <TextField
+            width="unset"
+            height="unset"
             label="Description"
             placeholder="description"
-            justifyContent="flex-start"
-            alignItems="center"
             shrink="0"
+            alignSelf="stretch"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            isRequired={false}
+            isRequired={true}
             isReadOnly={false}
             value={description}
             onChange={(e) => {
@@ -354,6 +355,8 @@ export default function UIEditReview(props) {
                   name,
                   description: value,
                   image,
+                  address,
+                  website,
                 };
                 const result = onChange(modelFields);
                 value = result?.description ?? value;
@@ -367,8 +370,7 @@ export default function UIEditReview(props) {
             errorMessage={errors.description?.errorMessage}
             hasError={errors.description?.hasError}
             {...getOverrideProps(overrides, "description")}
-          ></TextAreaField>
-
+          ></TextField>
           <TextField
           width="unset"
           height="unset"
@@ -443,8 +445,6 @@ export default function UIEditReview(props) {
             hasError={errors.website?.hasError}
             {...getOverrideProps(overrides, "website")}
           ></TextField>
-
-        </Flex>
           <Button
             children="Submit"
             type="submit"
@@ -455,6 +455,7 @@ export default function UIEditReview(props) {
             }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
+          </Flex>
       </Flex>
     </Flex>
     </Grid>
