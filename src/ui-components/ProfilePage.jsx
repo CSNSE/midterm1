@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -15,8 +15,21 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
+import MyIcon from "./MyIcon";
 export default function ProfilePage(props) {
-  const { overrides, ...rest } = props;
+  const { profile, overrides, ...rest } = props;
+  const buttonFourOneFourFiveOneFourZeroOnClick = useNavigateAction({
+    type: "url",
+    url: "stats",
+  });
+  const buttonFourOneFourFiveOneThreeNineOnClick = useNavigateAction({
+    type: "url",
+    url: "/history",
+  });
+  const buttonFourOneFiveSixTwoSevenSevenOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/editprof/"}${profile?.id}`,
+  });
   return (
     <View
       width="320px"
@@ -119,6 +132,9 @@ export default function ProfilePage(props) {
           isDisabled={false}
           variation="default"
           children="Statistics"
+          onClick={() => {
+            buttonFourOneFourFiveOneFourZeroOnClick();
+          }}
           {...getOverrideProps(overrides, "Button4145140")}
         ></Button>
         <Divider
@@ -194,7 +210,40 @@ export default function ProfilePage(props) {
           isDisabled={false}
           variation="default"
           children="Review History"
+          onClick={() => {
+            buttonFourOneFourFiveOneThreeNineOnClick();
+          }}
           {...getOverrideProps(overrides, "Button4145139")}
+        ></Button>
+        <MyIcon
+          width="24px"
+          height="24px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          overflow="hidden"
+          position="absolute"
+          top="24px"
+          left="272px"
+          padding="0px 0px 0px 0px"
+          type="edit"
+          {...getOverrideProps(overrides, "MyIcon")}
+        ></MyIcon>
+        <Button
+          width="42px"
+          height="34px"
+          position="absolute"
+          borderRadius="4px"
+          top="17px"
+          left="263px"
+          size="default"
+          isDisabled={false}
+          variation="default"
+          onClick={() => {
+            buttonFourOneFiveSixTwoSevenSevenOnClick();
+          }}
+          {...getOverrideProps(overrides, "Button4156277")}
         ></Button>
       </View>
     </View>
