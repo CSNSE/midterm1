@@ -1,3 +1,10 @@
+type Profile @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Biography: String
+  Preference: String
+  Location: String
+}
+
 type Diary @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String

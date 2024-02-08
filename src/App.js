@@ -19,6 +19,9 @@ class App extends Component {
         <Route exact path='/mine' element={<div><ReviewNavBar/><MyCardCollection/></div>}/>
         <Route exact path='/create' element={<DiaryCreateForm/>} />
         <Route exact path='/profile' element={<ProfilePage/>} />
+        <Route exact path='/editprof/:cid' element={<EditProfile/>} />
+        {/* <Route exact path='/history' element={</>} />
+        <Route exact path='/stats' element={</>} /> */}
       </Routes>
     </header></div>
     );

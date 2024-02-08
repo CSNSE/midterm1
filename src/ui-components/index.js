@@ -6,11 +6,14 @@
 
 export { default as DiaryCreateForm } from "./DiaryCreateForm";
 export { default as DiaryUpdateForm } from "./DiaryUpdateForm";
+export { default as EditProfile } from "./EditProfile";
 export { default as MyCardCollection } from "./MyCardCollection";
 export { default as MyIcon } from "./MyIcon";
 export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteUpdateForm } from "./NoteUpdateForm";
+export { default as ProfileCreateForm } from "./ProfileCreateForm";
 export { default as ProfilePage } from "./ProfilePage";
+export { default as ProfileUpdateForm } from "./ProfileUpdateForm";
 export { default as ReviewCard } from "./ReviewCard";
 export { default as ReviewCard1 } from "./ReviewCard1";
 export { default as ReviewCardCollection } from "./ReviewCardCollection";
