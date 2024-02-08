@@ -7,14 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import {
-  Button,
-  Divider,
-  Flex,
-  Text,
-  TextField,
-  View,
-} from "@aws-amplify/ui-react";
+import { Button, Divider, Flex, Text, View } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function ProfilePage(props) {
   const { profile, overrides, ...rest } = props;
@@ -147,56 +140,6 @@ export default function ProfilePage(props) {
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider4145146")}
         ></Divider>
-        <Flex
-          gap="16px"
-          direction="column"
-          width="272px"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          position="absolute"
-          top="71px"
-          left="24px"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Forms")}
-        >
-          <TextField
-            width="272px"
-            height="unset"
-            label="Bio/About Me"
-            placeholder="..."
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField4145171")}
-          ></TextField>
-          <TextField
-            width="272px"
-            height="unset"
-            label="Food Preferences"
-            placeholder="..."
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField4145172")}
-          ></TextField>
-          <TextField
-            width="272px"
-            height="unset"
-            label="Location"
-            placeholder="..."
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField4145173")}
-          ></TextField>
-        </Flex>
         <Button
           width="125px"
           height="55px"
@@ -245,6 +188,195 @@ export default function ProfilePage(props) {
           }}
           {...getOverrideProps(overrides, "Button4156277")}
         ></Button>
+        <Flex
+          gap="0"
+          direction="column"
+          width="320px"
+          height="295px"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          position="absolute"
+          top="52px"
+          left="0px"
+          padding="16px 16px 16px 16px"
+          {...getOverrideProps(overrides, "Card Area")}
+        >
+          <Flex
+            gap="8px"
+            direction="column"
+            width="unset"
+            height="90px"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Text Group4157287")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="20px"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="About Me"
+              {...getOverrideProps(overrides, "About Me")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="20px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={profile?.Biography}
+              {...getOverrideProps(overrides, "...4157291")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="8px"
+            direction="column"
+            width="unset"
+            height="90px"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Text Group4157300")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="Food Preferences"
+              {...getOverrideProps(overrides, "Food Preferences")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="20px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={profile?.Preference}
+              {...getOverrideProps(overrides, "...4157304")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="8px"
+            direction="column"
+            width="unset"
+            height="90px"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Text Group4157307")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="Location"
+              {...getOverrideProps(overrides, "Location")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="700"
+              color="rgba(13,26,38,1)"
+              lineHeight="24px"
+              textAlign="center"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              letterSpacing="0.01px"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={profile?.Location}
+              {...getOverrideProps(overrides, "...4157313")}
+            ></Text>
+          </Flex>
+        </Flex>
       </View>
     </View>
   );

@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {ReviewNavBar, ReviewCardCollection,DiaryCreateForm,ReviewHomePage, MyCardCollection, ProfilePage} from "./ui-components";
+import {ReviewNavBar, ReviewCardCollection,DiaryCreateForm,ReviewHomePage, MyCardCollection, ProfilePage, EditProfile} from "./ui-components";
 import { Routes, Route } from 'react-router-dom';
 import NewReview from './NewReview'
 import EditReview from './EditReview';
