@@ -11,11 +11,14 @@ import ReviewCard from "./ReviewCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
-import { getUrl } from "@aws-amplify/storage"; 
+import { getUrl } from "@aws-amplify/storage";
+import { useAuth } from '@aws-amplify/auth';
+  
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
 export default function MyCardCollection(props) {
+  
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -50,6 +53,7 @@ export default function MyCardCollection(props) {
       setLoading(true);
       const variables = {
         limit: pageSize,
+        // filter: { author: { eq: currentUser } },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -62,7 +66,7 @@ export default function MyCardCollection(props) {
       ).data.listDiaries;
       newCache.push(...result.items);
       newNext = result.nextToken;
-      const diariesFromAPI = result.items
+const diariesFromAPI = result.items
       await Promise.all(
         diariesFromAPI.map(async (diary) => {
           if (diary.image) {
