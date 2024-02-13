@@ -9,7 +9,7 @@ import * as React from "react";
 import { useState } from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { updateProfile } from "../graphql/mutations";
+import { createProfile } from "../graphql/mutations";
 import {
   Button,
   Divider,
@@ -38,13 +38,12 @@ export default function EditProfile(props) {
   const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/profile" });
   const buttonOnMouseDown = async () => {
     await client.graphql({
-      query: updateProfile.replaceAll("__typename", ""),
+      query: createProfile.replaceAll("__typename", ""),
       variables: {
         input: {
           Biography: textFieldFourOneFiveFiveTwoTwoSevenValue,
           Preference: textFieldFourOneFiveFiveTwoTwoEightValue,
           Location: textFieldFourOneFiveFiveTwoTwoNineValue,
-          id: d?.id,
         },
       },
     });
