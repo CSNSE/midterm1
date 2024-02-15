@@ -28,9 +28,9 @@ export default function ReviewCard(props) {
         },
       },
     });
-buttonFourZeroNineTwoSixFiveOnMouseOut();
+buttonFourZeroNineTwoSixFiveOnMouseUp();
   };
-  const buttonFourZeroNineTwoSixFiveOnMouseOut = useNavigateAction({
+  const buttonFourZeroNineTwoSixFiveOnMouseUp = useNavigateAction({
     type: "url",
     url: "/",
   });
@@ -138,8 +138,8 @@ buttonFourZeroNineTwoSixFiveOnMouseOut();
           onClick={() => {
             buttonFourZeroNineTwoSixFiveOnClick();
           }}
-          onMouseOut={() => {
-            buttonFourZeroNineTwoSixFiveOnMouseOut();
+          onMouseUp={() => {
+            buttonFourZeroNineTwoSixFiveOnMouseUp();
           }}
           {...getOverrideProps(overrides, "Button409265")}
         ></Button>

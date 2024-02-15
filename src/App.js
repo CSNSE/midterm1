@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {ReviewNavBar, ReviewCardCollection,DiaryCreateForm,ReviewHomePage, MyCardCollection, ProfilePage, EditProfile} from "./ui-components";
+import {ReviewNavBar, ReviewCardCollection,DiaryCreateForm,ReviewHomePage, MyCardCollection, ProfilePage, EditProfile, InfoCard} from "./ui-components";
 import { Routes, Route } from 'react-router-dom';
 import NewReview from './NewReview'
 import EditReview from './EditReview';
@@ -20,6 +20,7 @@ class App extends Component {
         <Route exact path='/create' element={<DiaryCreateForm/>} />
         <Route exact path='/profile' element={<div><ReviewNavBar/><ProfilePage/></div>} />
         <Route exact path='/editprof/:cid' element={<EditProfile/>} />
+        <Route exact path='/info' element={<InfoCard/>} />
         {/* <Route exact path='/history' element={</>} />
         <Route exact path='/stats' element={</>} /> */}
       </Routes>
