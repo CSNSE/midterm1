@@ -14,7 +14,10 @@ import MyIcon from "./MyIcon";
 const client = generateClient();
 export default function ReviewCard(props) {
   const { d, overrides, ...rest } = props;
-  const imageOnClick = useNavigateAction({ type: "url", url: "/info" });
+  const imageOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/info/"}${d?.id}`,
+  });
   const buttonFourOneOneSevenSixTwoOnClick = useNavigateAction({
     type: "url",
     url: `${"/edit/"}${d?.id}`,
