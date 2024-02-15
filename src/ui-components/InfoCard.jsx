@@ -133,7 +133,8 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.address}
+            // children={d?.address}
+            children={Hello}
             {...getOverrideProps(overrides, "...")}
           ></Text>
           <Text
@@ -178,7 +179,8 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.website}
+            // children={d?.website}
+            children={Hello}
             {...getOverrideProps(overrides, "....")}
           ></Text>
         </Flex>

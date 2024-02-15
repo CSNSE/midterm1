@@ -19,7 +19,7 @@ export default function ReviewCard(props) {
     type: "url",
     url: `${"/edit/"}${d?.id}`,
   });
-  const buttonFourZeroNineTwoSixFiveOnClick = async () => {
+  const buttonFourZeroNineTwoSixFiveOnMouseDown = async () => {
     await client.graphql({
       query: deleteDiary.replaceAll("__typename", ""),
       variables: {
@@ -28,7 +28,6 @@ export default function ReviewCard(props) {
         },
       },
     });
-buttonFourZeroNineTwoSixFiveOnMouseUp();
   };
   const buttonFourZeroNineTwoSixFiveOnMouseUp = useNavigateAction({
     type: "url",
@@ -135,8 +134,8 @@ buttonFourZeroNineTwoSixFiveOnMouseUp();
           size="default"
           isDisabled={false}
           variation="default"
-          onClick={() => {
-            buttonFourZeroNineTwoSixFiveOnClick();
+          onMouseDown={() => {
+            buttonFourZeroNineTwoSixFiveOnMouseDown();
           }}
           onMouseUp={() => {
             buttonFourZeroNineTwoSixFiveOnMouseUp();
