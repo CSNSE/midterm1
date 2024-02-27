@@ -20,7 +20,7 @@ class App extends Component {
         <Route exact path='/create' element={<DiaryCreateForm/>} />
         <Route exact path='/profile' element={<div><ReviewNavBar/><ProfilePage/></div>} />
         <Route exact path='/editprof/:cid' element={<EditProfile/>} />
-        <Route exact path='/info' element={<InfoCard/>} />
+        <Route exact path='/info/:cid' element={<InfoCard/>} />
         {/* <Route exact path='/history' element={</>} />
         <Route exact path='/stats' element={</>} /> */}
       </Routes>

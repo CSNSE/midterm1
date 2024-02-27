@@ -10,6 +10,7 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function InfoCard(props) {
   const { d, overrides, ...rest } = props;
+  console.log(d);
   const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
@@ -133,8 +134,8 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            // children={d?.address}
-            children={Hello}
+            children={d?.address}
+            // children={Hello}
             {...getOverrideProps(overrides, "...")}
           ></Text>
           <Text
@@ -179,8 +180,8 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            // children={d?.website}
-            children={Hello}
+            children={d?.website}
+            // children={Hello}
             {...getOverrideProps(overrides, "....")}
           ></Text>
         </Flex>
