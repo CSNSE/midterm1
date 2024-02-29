@@ -14,6 +14,7 @@ import MyIcon from "./MyIcon";
 const client = generateClient();
 export default function ReviewCard(props) {
   const { d, overrides, ...rest } = props;
+  console.log(d);
   const imageOnClick = useNavigateAction({
     type: "url",
     url: `${"/info/"}${d?.id}`,

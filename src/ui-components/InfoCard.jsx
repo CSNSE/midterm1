@@ -9,8 +9,59 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function InfoCard(props) {
-  const { d, overrides, ...rest } = props;
-  console.log(d);
+  // const { d, overrides, ...rest } = props;
+  // console.log(d);
+  const {
+    idProp, //remove id:
+    diary: diaryModelProp,
+    onSuccess,
+    onError,
+    onSubmit,
+    onValidate,
+    onChange,
+    overrides,
+    ...rest
+  } = props;
+  const initialValues = {
+    name: "",
+    description: "",
+    image: "",
+    address: "",
+    website: "",
+  };
+  const [name, setName] = React.useState(initialValues.name);
+  const [description, setDescription] = React.useState(initialValues.description);
+  const [image, setImage] = React.useState(initialValues.image);
+  const [address, setAddress] = React.useState(initialValues.address);
+  const [website, setWebsite] = React.useState(initialValues.website);
+  const [errors, setErrors] = React.useState({});
+  const resetStateValues = () => {
+    const cleanValues = diaryRecord
+      ? { ...initialValues, ...diaryRecord }
+      : initialValues;
+    setName(cleanValues.name);
+    setDescription(cleanValues.description);
+    setImage(cleanValues.image);
+    setAddress(cleanValues.address);
+    setWebsite(cleanValues.website);
+    setErrors({});
+  };
+  const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? (
+            await client.graphql({
+              query: getDiary.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getDiary
+        : diaryModelProp;
+      setDiaryRecord(record);
+    };
+    queryData();
+  }, [idProp, diaryModelProp]);
+  console.log(name);
   const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
@@ -134,8 +185,7 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.address}
-            // children={Hello}
+            children={address}
             {...getOverrideProps(overrides, "...")}
           ></Text>
           <Text
@@ -180,8 +230,7 @@ export default function InfoCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.website}
-            // children={Hello}
+            children={website}
             {...getOverrideProps(overrides, "....")}
           ></Text>
         </Flex>
