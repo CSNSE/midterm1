@@ -7,68 +7,76 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { deleteDiary } from "../graphql/mutations";
-import { Button, Flex, Image, Text, View } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
-const client = generateClient();
-export default function ReviewCard(props) {
-  const { d, overrides, ...rest } = props;
-  console.log(d);
-  const imageOnClick = useNavigateAction({
-    type: "url",
-    url: `${"/info/"}${d?.id}`,
-  });
-  const buttonFourOneOneSevenSixTwoOnClick = useNavigateAction({
-    type: "url",
-    url: `${"/edit/"}${d?.id}`,
-  });
-  const buttonFourZeroNineTwoSixFiveOnMouseDown = async () => {
-    await client.graphql({
-      query: deleteDiary.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          id: d?.id,
-        },
-      },
-    });
+import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
+export default function InfoCard(props) {
+  // const { d, overrides, ...rest } = props;
+  // console.log(d);
+  const {
+    idProp, //remove id:
+    diary: diaryModelProp,
+    onSuccess,
+    onError,
+    onSubmit,
+    onValidate,
+    onChange,
+    overrides,
+    ...rest
+  } = props;
+  const initialValues = {
+    name: "",
+    description: "",
+    image: "",
+    address: "",
+    website: "",
   };
-  const buttonFourZeroNineTwoSixFiveOnMouseUp = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
+  const [name, setName] = React.useState(initialValues.name);
+  const [description, setDescription] = React.useState(initialValues.description);
+  const [image, setImage] = React.useState(initialValues.image);
+  const [address, setAddress] = React.useState(initialValues.address);
+  const [website, setWebsite] = React.useState(initialValues.website);
+  const [errors, setErrors] = React.useState({});
+  const resetStateValues = () => {
+    const cleanValues = diaryRecord
+      ? { ...initialValues, ...diaryRecord }
+      : initialValues;
+    setName(cleanValues.name);
+    setDescription(cleanValues.description);
+    setImage(cleanValues.image);
+    setAddress(cleanValues.address);
+    setWebsite(cleanValues.website);
+    setErrors({});
+  };
+  const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? (
+            await client.graphql({
+              query: getDiary.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getDiary
+        : diaryModelProp;
+      setDiaryRecord(record);
+    };
+    queryData();
+  }, [idProp, diaryModelProp]);
+  console.log(name);
+  const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
       gap="0"
       direction="column"
       width="320px"
-      height="330px"
+      height="unset"
       justifyContent="center"
       alignItems="flex-start"
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "ReviewCard")}
+      {...getOverrideProps(overrides, "InfoCard")}
       {...rest}
     >
-      <Image
-        width="unset"
-        height="160px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        objectFit="cover"
-        src={d?.image}
-        onClick={() => {
-          imageOnClick();
-        }}
-        {...getOverrideProps(overrides, "image")}
-      ></Image>
       <View
         width="320px"
         height="34px"
@@ -83,75 +91,37 @@ export default function ReviewCard(props) {
         backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 324")}
       >
-        <MyIcon
-          width="24px"
-          height="24px"
+        <Icon
+          width="14px"
+          height="14px"
+          viewBox={{ minX: 0, minY: 0, width: 14, height: 14 }}
+          paths={[
+            {
+              d: "M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",
+              fill: "rgba(13,26,38,1)",
+              fillRule: "nonzero",
+            },
+          ]}
           display="block"
           gap="unset"
           alignItems="unset"
           justifyContent="unset"
-          overflow="hidden"
           position="absolute"
-          top="5px"
-          left="9px"
-          padding="0px 0px 0px 0px"
-          type="edit"
-          {...getOverrideProps(overrides, "MyIcon4089123")}
-        ></MyIcon>
-        <MyIcon
-          width="24px"
-          height="24px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          overflow="hidden"
-          position="absolute"
-          top="5px"
-          left="287px"
-          padding="0px 0px 0px 0px"
-          type="delete"
-          {...getOverrideProps(overrides, "MyIcon4117139")}
-        ></MyIcon>
-        <Button
-          width="42px"
-          height="34px"
-          position="absolute"
-          borderRadius="4px"
-          top="0px"
-          left="0px"
-          size="default"
-          isDisabled={false}
-          variation="default"
+          top="29.41%"
+          bottom="29.41%"
+          left="4.69%"
+          right="90.94%"
           onClick={() => {
-            buttonFourOneOneSevenSixTwoOnClick();
+            vectorOnClick();
           }}
-          {...getOverrideProps(overrides, "Button411762")}
-        ></Button>
-        <Button
-          width="42px"
-          height="34px"
-          position="absolute"
-          borderRadius="4px"
-          top="0px"
-          left="278px"
-          size="default"
-          isDisabled={false}
-          variation="default"
-          onMouseDown={() => {
-            buttonFourZeroNineTwoSixFiveOnMouseDown();
-          }}
-          onMouseUp={() => {
-            buttonFourZeroNineTwoSixFiveOnMouseUp();
-          }}
-          {...getOverrideProps(overrides, "Button409265")}
-        ></Button>
+          {...getOverrideProps(overrides, "Vector")}
+        ></Icon>
       </View>
       <Flex
         gap="0"
         direction="column"
         width="unset"
-        height="106px"
+        height="183px"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
@@ -161,10 +131,10 @@ export default function ReviewCard(props) {
         {...getOverrideProps(overrides, "Card Area")}
       >
         <Flex
-          gap="8px"
+          gap="17px"
           direction="column"
           width="unset"
-          height="unset"
+          height="138px"
           justifyContent="flex-start"
           alignItems="flex-start"
           shrink="0"
@@ -192,8 +162,8 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.name}
-            {...getOverrideProps(overrides, "Name of Restaurant")}
+            children="Address of Restaurant"
+            {...getOverrideProps(overrides, "Address of Restaurant")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -215,8 +185,31 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.author}
-            {...getOverrideProps(overrides, "Writer/Author")}
+            children={address}
+            {...getOverrideProps(overrides, "...")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="24px"
+            textAlign="center"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            letterSpacing="0.01px"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="Website URL"
+            {...getOverrideProps(overrides, "Website URL")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -237,8 +230,8 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={d?.description}
-            {...getOverrideProps(overrides, "Description of Review")}
+            children={website}
+            {...getOverrideProps(overrides, "....")}
           ></Text>
         </Flex>
       </Flex>

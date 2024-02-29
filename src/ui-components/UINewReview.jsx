@@ -37,6 +37,14 @@ export default function UINewReview(props) {
     textFieldFourZeroSevenFiveFourFourThreeValue,
     setTextFieldFourZeroSevenFiveFourFourThreeValue,
   ] = useState("");
+  const [
+    textFieldFourOneFourEightOneFourThreeValue,
+    setTextFieldFourOneFourEightOneFourThreeValue,
+  ] = useState("");
+  const [
+    textFieldFourOneFourEightOneFiveZeroValue,
+    setTextFieldFourOneFourEightOneFiveZeroValue,
+  ] = useState("");
   const iconOnMouseDown = useNavigateAction({ type: "url", url: "" });
   const vectorOnClick = useNavigateAction({ type: "url", url: "/all" });
   const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/all" });
@@ -49,6 +57,8 @@ export default function UINewReview(props) {
           image: imageName,
           description: textFieldFourZeroSevenFiveFourFourThreeValue,
           author: authAttributes["email"],
+          address: textFieldFourOneFourEightOneFourThreeValue,
+          website: textFieldFourOneFourEightOneFiveZeroValue,
         },
       },
     });
@@ -244,6 +254,10 @@ export default function UINewReview(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourOneFourEightOneFourThreeValue}
+            onChange={(event) => {
+              setTextFieldFourOneFourEightOneFourThreeValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField4148143")}
           ></TextField>
           <TextField
@@ -256,6 +270,10 @@ export default function UINewReview(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourOneFourEightOneFiveZeroValue}
+            onChange={(event) => {
+              setTextFieldFourOneFourEightOneFiveZeroValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField4148150")}
           ></TextField>
         </Flex>
