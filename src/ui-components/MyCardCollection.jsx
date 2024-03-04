@@ -12,13 +12,18 @@ import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { getUrl } from "@aws-amplify/storage";
-import { useAuth } from '@aws-amplify/auth';
-  
+import { useAuth, getCurrentUser } from '@aws-amplify/auth';
+
+
+// const { username, userId, signInDetails } = await getCurrentUser();
+// console.log(`The username: ${username}`);
+// console.log(`The userId: ${userId}`);
+// console.log(`The signInDetails: ${signInDetails}`);
+// const user = await Auth.currentAuthenticatedUser();
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
 export default function MyCardCollection(props) {
-  
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -53,7 +58,7 @@ export default function MyCardCollection(props) {
       setLoading(true);
       const variables = {
         limit: pageSize,
-        // filter: { author: { eq: currentUser } },
+        filter: { author: { eq: user.attributes.email } },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -98,8 +103,9 @@ const diariesFromAPI = result.items
     <div>
       <Collection
         type="list"
+        searchPlaceholder="Search..."
         direction="column"
-        justifyContent="left"
+        justifyContent="stretch"
         itemsPerPage={pageSize}
         isPaginated={!isApiPagination && isPaginated}
         items={itemsProp || (loading ? new Array(pageSize).fill({}) : items)}
