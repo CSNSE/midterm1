@@ -9,16 +9,10 @@ import { BrowserRouter } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import { ThemeProvider, createTheme } from "@aws-amplify/ui-react";
 import { studioTheme } from './ui-components';
-import { defaultStorage } from 'aws-amplify/utils';
-import { cognitoUserPoolsTokenProvider } from 'aws-amplify/auth/cognito';
 
 
-// const authConfig = {
-//     Cognito: {
-//       userPoolId: 'us-east-1_01FttlucE',
-//       userPoolClientId: 'd3c0rktuijxvux'
-//     }
-//   };
+
+
 
 const updatedTheme = createTheme({
     name: "my-theme-updates", 
@@ -35,10 +29,7 @@ const updatedTheme = createTheme({
     },
 }, studioTheme)
 Amplify.configure(config);
-// Amplify.configure({
-//     Auth: authConfig
-//   });
-//   cognitoUserPoolsTokenProvider.setKeyValueStorage(defaultStorage);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
