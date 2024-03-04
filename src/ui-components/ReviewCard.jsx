@@ -42,7 +42,7 @@ export default function ReviewCard(props) {
       gap="0"
       direction="column"
       width="320px"
-      height="330px"
+      height="426px"
       justifyContent="center"
       alignItems="flex-start"
       position="relative"
@@ -53,7 +53,7 @@ export default function ReviewCard(props) {
     >
       <Image
         width="unset"
-        height="160px"
+        height="254px"
         display="block"
         gap="unset"
         alignItems="unset"
