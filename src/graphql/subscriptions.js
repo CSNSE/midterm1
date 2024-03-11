@@ -1,6 +1,90 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateSport = /* GraphQL */ `
+  subscription OnCreateSport($filter: ModelSubscriptionSportFilterInput) {
+    onCreateSport(filter: $filter) {
+      id
+      name
+      grad
+      sport
+      position
+      height
+      weight
+      team
+      highlight
+      Parentname
+      Parentemail
+      Parentphone
+      Coachname
+      Coachemail
+      Coachphone
+      gpa
+      test
+      image
+      author
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateSport = /* GraphQL */ `
+  subscription OnUpdateSport($filter: ModelSubscriptionSportFilterInput) {
+    onUpdateSport(filter: $filter) {
+      id
+      name
+      grad
+      sport
+      position
+      height
+      weight
+      team
+      highlight
+      Parentname
+      Parentemail
+      Parentphone
+      Coachname
+      Coachemail
+      Coachphone
+      gpa
+      test
+      image
+      author
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteSport = /* GraphQL */ `
+  subscription OnDeleteSport($filter: ModelSubscriptionSportFilterInput) {
+    onDeleteSport(filter: $filter) {
+      id
+      name
+      grad
+      sport
+      position
+      height
+      weight
+      team
+      highlight
+      Parentname
+      Parentemail
+      Parentphone
+      Coachname
+      Coachemail
+      Coachphone
+      gpa
+      test
+      image
+      author
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
     onCreateProfile(filter: $filter) {
