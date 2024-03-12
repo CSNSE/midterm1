@@ -1,25 +1,3 @@
-type Sport @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
-  grad: String
-  sport: String
-  position: String
-  height: String
-  weight: String
-  team: String
-  highlight: String
-  Parentname: String
-  Parentemail: String
-  Parentphone: String
-  Coachname: String
-  Coachemail: String
-  Coachphone: String
-  gpa: String
-  test: String
-  image: String
-  author: String
-}
-
 type Profile @model @auth(rules: [{allow: public}]) {
   id: ID!
   Biography: String
@@ -43,3 +21,4 @@ type Note @model @auth(rules: [{allow: public}]) {
   description: String
   image: String
 }
+ 
