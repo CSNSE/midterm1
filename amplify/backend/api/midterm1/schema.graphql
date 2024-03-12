@@ -43,4 +43,3 @@ type Note @model @auth(rules: [{allow: public}]) {
   description: String
   image: String
 }
- 
