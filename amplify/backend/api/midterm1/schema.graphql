@@ -1,4 +1,4 @@
-type Sport @model @auth(rules: [{allow: public}]) {
+type Sport @retain @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   grad: String
