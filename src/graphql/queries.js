@@ -1,6 +1,70 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getSport = /* GraphQL */ `
+  query GetSport($id: ID!) {
+    getSport(id: $id) {
+      id
+      name
+      grad
+      sport
+      position
+      height
+      weight
+      team
+      highlight
+      parentname
+      parentemail
+      parentphone
+      coachname
+      coachemail
+      coachphone
+      gpa
+      test
+      image
+      author
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listSports = /* GraphQL */ `
+  query ListSports(
+    $filter: ModelSportFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSports(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        grad
+        sport
+        position
+        height
+        weight
+        team
+        highlight
+        parentname
+        parentemail
+        parentphone
+        coachname
+        coachemail
+        coachphone
+        gpa
+        test
+        image
+        author
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
