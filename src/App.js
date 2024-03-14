@@ -25,6 +25,7 @@ class App extends Component {
         <Route exact path='/stats' element={</>} /> */}
       </Routes>
     </header></div>
+    //test
     );
 }
 }
