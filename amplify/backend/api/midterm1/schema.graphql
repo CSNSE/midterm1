@@ -1,3 +1,25 @@
+type Sport @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  grad: String
+  sport: String
+  position: String
+  height: String
+  weight: String
+  team: String
+  highlight: String
+  parentname: String
+  parentemail: String
+  parentphone: String
+  coachname: String
+  coachemail: String
+  coachphone: String
+  gpa: String
+  test: String
+  image: String
+  author: String
+}
+
 type Profile @model @auth(rules: [{allow: public}]) {
   id: ID!
   Biography: String

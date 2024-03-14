@@ -31,12 +31,12 @@ export default function SportCreateForm(props) {
     weight: "",
     team: "",
     highlight: "",
-    Parentname: "",
-    Parentemail: "",
-    Parentphone: "",
-    Coachname: "",
-    Coachemail: "",
-    Coachphone: "",
+    parentname: "",
+    parentemail: "",
+    parentphone: "",
+    coachname: "",
+    coachemail: "",
+    coachphone: "",
     gpa: "",
     test: "",
     image: "",
@@ -50,16 +50,16 @@ export default function SportCreateForm(props) {
   const [weight, setWeight] = React.useState(initialValues.weight);
   const [team, setTeam] = React.useState(initialValues.team);
   const [highlight, setHighlight] = React.useState(initialValues.highlight);
-  const [Parentname, setParentname] = React.useState(initialValues.Parentname);
-  const [Parentemail, setParentemail] = React.useState(
-    initialValues.Parentemail
+  const [parentname, setParentname] = React.useState(initialValues.parentname);
+  const [parentemail, setParentemail] = React.useState(
+    initialValues.parentemail
   );
-  const [Parentphone, setParentphone] = React.useState(
-    initialValues.Parentphone
+  const [parentphone, setParentphone] = React.useState(
+    initialValues.parentphone
   );
-  const [Coachname, setCoachname] = React.useState(initialValues.Coachname);
-  const [Coachemail, setCoachemail] = React.useState(initialValues.Coachemail);
-  const [Coachphone, setCoachphone] = React.useState(initialValues.Coachphone);
+  const [coachname, setCoachname] = React.useState(initialValues.coachname);
+  const [coachemail, setCoachemail] = React.useState(initialValues.coachemail);
+  const [coachphone, setCoachphone] = React.useState(initialValues.coachphone);
   const [gpa, setGpa] = React.useState(initialValues.gpa);
   const [test, setTest] = React.useState(initialValues.test);
   const [image, setImage] = React.useState(initialValues.image);
@@ -74,12 +74,12 @@ export default function SportCreateForm(props) {
     setWeight(initialValues.weight);
     setTeam(initialValues.team);
     setHighlight(initialValues.highlight);
-    setParentname(initialValues.Parentname);
-    setParentemail(initialValues.Parentemail);
-    setParentphone(initialValues.Parentphone);
-    setCoachname(initialValues.Coachname);
-    setCoachemail(initialValues.Coachemail);
-    setCoachphone(initialValues.Coachphone);
+    setParentname(initialValues.parentname);
+    setParentemail(initialValues.parentemail);
+    setParentphone(initialValues.parentphone);
+    setCoachname(initialValues.coachname);
+    setCoachemail(initialValues.coachemail);
+    setCoachphone(initialValues.coachphone);
     setGpa(initialValues.gpa);
     setTest(initialValues.test);
     setImage(initialValues.image);
@@ -95,12 +95,12 @@ export default function SportCreateForm(props) {
     weight: [],
     team: [],
     highlight: [],
-    Parentname: [],
-    Parentemail: [],
-    Parentphone: [],
-    Coachname: [],
-    Coachemail: [],
-    Coachphone: [],
+    parentname: [],
+    parentemail: [],
+    parentphone: [],
+    coachname: [],
+    coachemail: [],
+    coachphone: [],
     gpa: [],
     test: [],
     image: [],
@@ -140,12 +140,12 @@ export default function SportCreateForm(props) {
           weight,
           team,
           highlight,
-          Parentname,
-          Parentemail,
-          Parentphone,
-          Coachname,
-          Coachemail,
-          Coachphone,
+          parentname,
+          parentemail,
+          parentphone,
+          coachname,
+          coachemail,
+          coachphone,
           gpa,
           test,
           image,
@@ -220,12 +220,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -261,12 +261,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -302,12 +302,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -343,12 +343,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -384,12 +384,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -425,12 +425,12 @@ export default function SportCreateForm(props) {
               weight: value,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -466,12 +466,12 @@ export default function SportCreateForm(props) {
               weight,
               team: value,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -507,12 +507,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight: value,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
@@ -535,7 +535,7 @@ export default function SportCreateForm(props) {
         label="Parentname"
         isRequired={false}
         isReadOnly={false}
-        value={Parentname}
+        value={parentname}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -548,35 +548,35 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname: value,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname: value,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Parentname ?? value;
+            value = result?.parentname ?? value;
           }
-          if (errors.Parentname?.hasError) {
-            runValidationTasks("Parentname", value);
+          if (errors.parentname?.hasError) {
+            runValidationTasks("parentname", value);
           }
           setParentname(value);
         }}
-        onBlur={() => runValidationTasks("Parentname", Parentname)}
-        errorMessage={errors.Parentname?.errorMessage}
-        hasError={errors.Parentname?.hasError}
-        {...getOverrideProps(overrides, "Parentname")}
+        onBlur={() => runValidationTasks("parentname", parentname)}
+        errorMessage={errors.parentname?.errorMessage}
+        hasError={errors.parentname?.hasError}
+        {...getOverrideProps(overrides, "parentname")}
       ></TextField>
       <TextField
         label="Parentemail"
         isRequired={false}
         isReadOnly={false}
-        value={Parentemail}
+        value={parentemail}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -589,35 +589,35 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail: value,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail: value,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Parentemail ?? value;
+            value = result?.parentemail ?? value;
           }
-          if (errors.Parentemail?.hasError) {
-            runValidationTasks("Parentemail", value);
+          if (errors.parentemail?.hasError) {
+            runValidationTasks("parentemail", value);
           }
           setParentemail(value);
         }}
-        onBlur={() => runValidationTasks("Parentemail", Parentemail)}
-        errorMessage={errors.Parentemail?.errorMessage}
-        hasError={errors.Parentemail?.hasError}
-        {...getOverrideProps(overrides, "Parentemail")}
+        onBlur={() => runValidationTasks("parentemail", parentemail)}
+        errorMessage={errors.parentemail?.errorMessage}
+        hasError={errors.parentemail?.hasError}
+        {...getOverrideProps(overrides, "parentemail")}
       ></TextField>
       <TextField
         label="Parentphone"
         isRequired={false}
         isReadOnly={false}
-        value={Parentphone}
+        value={parentphone}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -630,35 +630,35 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone: value,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone: value,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Parentphone ?? value;
+            value = result?.parentphone ?? value;
           }
-          if (errors.Parentphone?.hasError) {
-            runValidationTasks("Parentphone", value);
+          if (errors.parentphone?.hasError) {
+            runValidationTasks("parentphone", value);
           }
           setParentphone(value);
         }}
-        onBlur={() => runValidationTasks("Parentphone", Parentphone)}
-        errorMessage={errors.Parentphone?.errorMessage}
-        hasError={errors.Parentphone?.hasError}
-        {...getOverrideProps(overrides, "Parentphone")}
+        onBlur={() => runValidationTasks("parentphone", parentphone)}
+        errorMessage={errors.parentphone?.errorMessage}
+        hasError={errors.parentphone?.hasError}
+        {...getOverrideProps(overrides, "parentphone")}
       ></TextField>
       <TextField
         label="Coachname"
         isRequired={false}
         isReadOnly={false}
-        value={Coachname}
+        value={coachname}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -671,35 +671,35 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname: value,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname: value,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Coachname ?? value;
+            value = result?.coachname ?? value;
           }
-          if (errors.Coachname?.hasError) {
-            runValidationTasks("Coachname", value);
+          if (errors.coachname?.hasError) {
+            runValidationTasks("coachname", value);
           }
           setCoachname(value);
         }}
-        onBlur={() => runValidationTasks("Coachname", Coachname)}
-        errorMessage={errors.Coachname?.errorMessage}
-        hasError={errors.Coachname?.hasError}
-        {...getOverrideProps(overrides, "Coachname")}
+        onBlur={() => runValidationTasks("coachname", coachname)}
+        errorMessage={errors.coachname?.errorMessage}
+        hasError={errors.coachname?.hasError}
+        {...getOverrideProps(overrides, "coachname")}
       ></TextField>
       <TextField
         label="Coachemail"
         isRequired={false}
         isReadOnly={false}
-        value={Coachemail}
+        value={coachemail}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -712,35 +712,35 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail: value,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail: value,
+              coachphone,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Coachemail ?? value;
+            value = result?.coachemail ?? value;
           }
-          if (errors.Coachemail?.hasError) {
-            runValidationTasks("Coachemail", value);
+          if (errors.coachemail?.hasError) {
+            runValidationTasks("coachemail", value);
           }
           setCoachemail(value);
         }}
-        onBlur={() => runValidationTasks("Coachemail", Coachemail)}
-        errorMessage={errors.Coachemail?.errorMessage}
-        hasError={errors.Coachemail?.hasError}
-        {...getOverrideProps(overrides, "Coachemail")}
+        onBlur={() => runValidationTasks("coachemail", coachemail)}
+        errorMessage={errors.coachemail?.errorMessage}
+        hasError={errors.coachemail?.hasError}
+        {...getOverrideProps(overrides, "coachemail")}
       ></TextField>
       <TextField
         label="Coachphone"
         isRequired={false}
         isReadOnly={false}
-        value={Coachphone}
+        value={coachphone}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -753,29 +753,29 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone: value,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone: value,
               gpa,
               test,
               image,
               author,
             };
             const result = onChange(modelFields);
-            value = result?.Coachphone ?? value;
+            value = result?.coachphone ?? value;
           }
-          if (errors.Coachphone?.hasError) {
-            runValidationTasks("Coachphone", value);
+          if (errors.coachphone?.hasError) {
+            runValidationTasks("coachphone", value);
           }
           setCoachphone(value);
         }}
-        onBlur={() => runValidationTasks("Coachphone", Coachphone)}
-        errorMessage={errors.Coachphone?.errorMessage}
-        hasError={errors.Coachphone?.hasError}
-        {...getOverrideProps(overrides, "Coachphone")}
+        onBlur={() => runValidationTasks("coachphone", coachphone)}
+        errorMessage={errors.coachphone?.errorMessage}
+        hasError={errors.coachphone?.hasError}
+        {...getOverrideProps(overrides, "coachphone")}
       ></TextField>
       <TextField
         label="Gpa"
@@ -794,12 +794,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa: value,
               test,
               image,
@@ -835,12 +835,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test: value,
               image,
@@ -876,12 +876,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image: value,
@@ -917,12 +917,12 @@ export default function SportCreateForm(props) {
               weight,
               team,
               highlight,
-              Parentname,
-              Parentemail,
-              Parentphone,
-              Coachname,
-              Coachemail,
-              Coachphone,
+              parentname,
+              parentemail,
+              parentphone,
+              coachname,
+              coachemail,
+              coachphone,
               gpa,
               test,
               image,

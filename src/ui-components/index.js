@@ -20,6 +20,8 @@ export { default as ReviewCard1 } from "./ReviewCard1";
 export { default as ReviewCardCollection } from "./ReviewCardCollection";
 export { default as ReviewHomePage } from "./ReviewHomePage";
 export { default as ReviewNavBar } from "./ReviewNavBar";
+export { default as SportCreateForm } from "./SportCreateForm";
+export { default as SportUpdateForm } from "./SportUpdateForm";
 export { default as UICreateSport } from "./UICreateSport";
 export { default as UIEditReview } from "./UIEditReview";
 export { default as UIEditSport } from "./UIEditSport";
