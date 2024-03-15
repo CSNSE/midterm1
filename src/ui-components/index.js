@@ -15,6 +15,8 @@ export { default as NoteUpdateForm } from "./NoteUpdateForm";
 export { default as ProfileCreateForm } from "./ProfileCreateForm";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as ProfileUpdateForm } from "./ProfileUpdateForm";
+export { default as ResumeCreateForm } from "./ResumeCreateForm";
+export { default as ResumeUpdateForm } from "./ResumeUpdateForm";
 export { default as ReviewCard } from "./ReviewCard";
 export { default as ReviewCard1 } from "./ReviewCard1";
 export { default as ReviewCardCollection } from "./ReviewCardCollection";
